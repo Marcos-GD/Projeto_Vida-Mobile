@@ -1,16 +1,23 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TouchableHighlight} from 'react-native';
-
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  FlatList,
+  Image,
+} from 'react-native';
 import {connect} from 'react-redux';
 
 import SearchBar from './searchBar';
+import Card from './card';
 
 class GitHubRequest extends Component {
   componentDidMount() {
-    console.log(this.props.user);
+    console.log('created');
   }
   componentDidUpdate() {
-    console.log(this.props.user);
+    console.log('updated component');
   }
 
   /*  For DEBUG
@@ -18,14 +25,22 @@ class GitHubRequest extends Component {
           style={{backgroundColor: '#559'}}
           onPress={() => this.forceUpdate()}>
           <Text>Refresh</Text>
-        </TouchableHighlight> */
+        </TouchableHighlight> 
+  */
+
+  showUserCard = () => {
+    if (this.props.requestFail)
+      return <Text style={{color: 'red'}}>error</Text>;
+    if (this.props.userdata === undefined) return;
+    else return <Card />;
+  };
 
   render() {
     return (
       <View style={styles.component}>
         <Text style={styles.title}>Usuário do GitHub:</Text>
         <SearchBar />
-        <Text>{this.props.user}</Text>
+        {this.showUserCard()}
       </View>
     );
   }
@@ -33,7 +48,8 @@ class GitHubRequest extends Component {
 
 const styles = StyleSheet.create({
   component: {
-    height: '80%',
+    height: 700,
+    maxHeight: '100%',
     backgroundColor: '#F5F5F5',
     padding: 15,
   },
@@ -43,7 +59,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => ({user: state.userdata.username});
+const mapStateToProps = state => ({
+  userdata: state.userdata.data,
+  requestFail: state.userdata.error,
+});
 
 export default connect(
   mapStateToProps,

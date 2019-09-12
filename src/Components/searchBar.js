@@ -29,6 +29,9 @@ class SearchBar extends Component {
         <TextInput
           placeholder="usuário"
           style={styles.input}
+          autoCapitalize="none"
+          autoFocus={true}
+          autoCorrect={false}
           value={this.state.searchUser}
           onChangeText={text => this.setState({searchUser: text})}
         />

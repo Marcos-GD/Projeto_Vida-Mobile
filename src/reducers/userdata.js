@@ -1,7 +1,12 @@
 export default function userdata(state = [], action) {
   switch (action.type) {
-    case 'SEARCH_USER':
-      return {username: action.username};
+    case 'REQUEST_USER_SUCESSFULL':
+      console.log(action.payload.name);
+      return {
+        data: action.payload,
+      };
+    case 'REQUEST_FAILED':
+      return {error: true, message: action.message};
     default:
       return state;
   }
