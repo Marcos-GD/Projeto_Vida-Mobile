@@ -11,6 +11,7 @@ class Card extends Component {
           source={{uri: this.props.userdata.avatar}}
           style={styles.avatar}
         />
+        {console.log(this.props.userdata.avatar)}
         <View style={styles.footer}>
           <Text style={styles.name}>{this.props.userdata.name}</Text>
           <Text style={styles.bio} numberOfLines={3}>
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   bio: {
-    alignSelf: 'center',
+    alignSelf: 'stretch',
     fontSize: 13,
     color: '#999',
   },
