@@ -30,7 +30,12 @@ class GitHubRequest extends Component {
 
   showUserCard = () => {
     if (this.props.requestFail)
-      return <Text style={{color: 'red'}}>error</Text>;
+      return (
+        <View>
+          <Text style={{color: 'red'}}>error</Text>
+          <Text style={{color: 'red'}}>{this.props.requestFail}</Text>
+        </View>
+      );
     if (this.props.userdata === undefined) return;
     else return <Card />;
   };
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   userdata: state.userdata.data,
-  requestFail: state.userdata.error,
+  requestFail: state.userdata.message,
 });
 
 export default connect(

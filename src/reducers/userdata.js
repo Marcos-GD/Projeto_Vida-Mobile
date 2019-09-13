@@ -6,7 +6,7 @@ export default function userdata(state = [], action) {
         data: action.payload,
       };
     case 'REQUEST_FAILED':
-      return {error: true, message: action.message};
+      return {message: action.message};
     default:
       return state;
   }

@@ -1,5 +1,7 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
+
 import FindUser from '../Services/github';
+import actions from '../actions/actions';
 
 // function* fetchUser(action) {
 //   try {
@@ -25,7 +27,7 @@ function* requestUserToGithub(action) {
       bio,
     } = userdata;
     yield put({
-      type: 'REQUEST_USER_SUCESSFULL',
+      type: actions.REQUEST_USER_SUCESSFULL,
       // payload: {data},
       payload: {
         name,
@@ -40,7 +42,7 @@ function* requestUserToGithub(action) {
     });
   } catch (e) {
     console.log(`error on request: ${e.message}`);
-    yield put({type: 'REQUEST_FAILED', message: e.message});
+    yield put({type: actions.REQUEST_FAILED, message: e.message});
   }
 }
 

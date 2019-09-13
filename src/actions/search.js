@@ -1,6 +1,8 @@
+import actions from './actions';
+
 export function search(username) {
   return {
-    type: 'SEARCH_USER',
+    type: actions.SEARCH_USER,
     username,
   };
 }
