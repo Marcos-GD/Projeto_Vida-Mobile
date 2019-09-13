@@ -34,11 +34,12 @@ class SearchBar extends Component {
           autoCorrect={false}
           value={this.state.searchUser}
           onChangeText={text => this.setState({searchUser: text})}
+          onSubmitEditing={() => this.search(this.state.searchUser)}
         />
         <TouchableOpacity
           style={styles.buttonStyle}
           onPress={() => this.search(this.state.searchUser)}>
-          <Text style={{marginTop: 8}}>Search</Text>
+          <Text style={{marginTop: 8, color: '#fff'}}>Enter</Text>
         </TouchableOpacity>
       </View>
     );
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     backgroundColor: '#5C7',
     borderWidth: 1,
-    borderColor: '#444',
+    borderColor: '#777',
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
     marginTop: 2,
